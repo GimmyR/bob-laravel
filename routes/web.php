@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ use App\Http\Controllers\RecipeController;
 */
 
 Route::get("/", [RecipeController::class, "index"])->name("home");
+
+Route::get("/test", [TestController::class, "index"]);
