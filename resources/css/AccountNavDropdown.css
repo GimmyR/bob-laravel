@@ -1,0 +1,9 @@
+.dropdown-toggle::before, .dropdown-toggle::after {
+    display: none !important; 
+}
+
+.account-nav-dropdown-username {
+    font-weight: bold;
+    font-size: 17px;
+    color: #0059ff;
+}
