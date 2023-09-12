@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,15 @@ use App\Http\Controllers\TestController;
 */
 
 Route::get("/", [RecipeController::class, "index"])->name("home");
+
+Route::prefix("/user")->group(function() {
+
+    Route::post("/login", [UserController::class, "login"]);
+
+    Route::get("/auth", [UserController::class, "auth"]);
+
+    Route::get("/logout", [UserController::class, "logout"]);
+
+});
 
 Route::get("/test", [TestController::class, "index"]);
