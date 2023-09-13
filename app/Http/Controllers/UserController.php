@@ -3,22 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Services\CustomValidator;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function login(Request $request) {
+    public function login(LoginRequest $request) {
 
-        $result = [ "error" => true ];
+        $result = [ "error" => true, "message" => null, "data" => null ];
         
-        $credentials = CustomValidator::validateInputs($request);
+        $credentials = $request->validated();
 
-        if($result["error"] = !Auth::attempt($credentials)) {
+        $result["error"] = !Auth::attempt($credentials);
+
+        if(!$result["error"]) {
 
             $request->session()->regenerate();
+
+        } else {
+
+            $result["message"] = "An user info is not correct !";
 
         } return $result;
 
@@ -26,7 +29,7 @@ class UserController extends Controller
 
     public function auth() {
 
-        $result = [ "error" => true, "data" => null ];
+        $result = [ "error" => true, "message" => null, "data" => null ];
 
         $result["data"] = Auth::user();
 
@@ -37,10 +40,14 @@ class UserController extends Controller
     }
 
     public function logout() {
+
+        $result = [ "error" => true, "message" => null, "data" => null ];
         
         Auth::logout();
 
-        return [ "error" => false ];
+        $result["error"] = false;
+
+        return $result;
 
     }
 }
