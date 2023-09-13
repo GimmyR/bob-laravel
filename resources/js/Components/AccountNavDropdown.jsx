@@ -3,9 +3,7 @@ import { Button, NavDropdown } from "react-bootstrap";
 import '../../css/AccountNavDropdown.css';
 import ConfirmModal from "./ConfirmModal";
 
-const AccountNavDropdown = function() {
-
-    const [user, setUser] = useState(null);
+const AccountNavDropdown = function({ user, setUser }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -16,14 +14,21 @@ const AccountNavDropdown = function() {
     };
 
     const disconnect = function() {
-        
+        fetch("/user/logout")
+            .then(response => response.json()
+            .then(res => {
+                if(!res.error) {
+                    setUser(null);
+                    setShowDropdown(false);
+                }
+            }).catch(error => console.log("ERROR: ", error)));
     };
 
     return (
         <>
             <NavDropdown title={<i className="bi bi-person-circle fs-3"></i>} drop="start" show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>
                 <NavDropdown.ItemText className="text-center">
-                    <span className="account-nav-dropdown-username">{user.userName}</span>
+                    <span className="account-nav-dropdown-username">{user.name}</span>
                 </NavDropdown.ItemText>
                 <NavDropdown.Divider/>
                 <NavDropdown.Item href="#" onClick={clickMyProfile} className="text-center">My profile</NavDropdown.Item>
