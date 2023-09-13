@@ -6,27 +6,33 @@ import PasswordInput from "./PasswordInput";
 import ForgotPasswordLink from "./ForgotPasswordLink";
 import LoginButton from "./LoginButton";
 import CreateAccountLink from "./CreateAccountLink";
+import axios from "axios";
 
 const LoginModal = function({ show, handleClose, getUser, createAccount }) {
+
+    const [error, setError] = useState(null);
 
     const [email, setEmail] = useState(null);
 
     const [password, setPassword] = useState(null);
 
-    const [error, setError] = useState(null);
-
     const connect = function() {
-        const data = { email: email, password: password };
-        fetch("/user/login", {
-            method: "POST",
-            body: JSON.stringify(data)
-        }).then(response => response.json()
-            .then(res => {
-                if(!res.error) {
+        setError(null);
+        // AXIOS GRANTS TO SIMPLY MANAGE CSRF TOKEN
+        axios.post("/user/login", {
+            email: email,
+            password: password
+        }).then(response => {
+                console.log(response);
+                if(!response.data.error) {
                     getUser();
                     handleClose();
-                }
-            }).catch(error => console.log(error)));
+                } else if(response.data.message != null)
+                    setError(response.data.message);
+            }).catch(error => {
+                if(error.response.data.message != undefined)
+                    setError(error.response.data.message);
+            });
     };
 
     useEffect(() => {
