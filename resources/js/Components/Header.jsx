@@ -7,6 +7,7 @@ import NotificationNavLink from "./NotificationNavLink";
 import AccountNavLink from "./AccountNavLink";
 import AccountNavDropdown from "./AccountNavDropdown";
 import LoginModal from "./LoginModal";
+import { Link } from "@inertiajs/react";
 
 export default function Header() {
 
@@ -44,9 +45,9 @@ export default function Header() {
             <Navbar bg="success" variant="dark" id="header">
                 <Container fluid>
                     <Navbar.Brand>
-                        <a href="#" onClick={toHome} className="header-navbar-brand">
-                            <Image src={null} className="header-navbar-brand-logo" fluid/>
-                        </a>
+                        <Link href="/" onClick={toHome} className="header-navbar-brand">
+                            <Image src="/logo.png" className="header-navbar-brand-logo" fluid/>
+                        </Link>
                     </Navbar.Brand>
                     <Form className="d-flex col-lg-5" onSubmit={e => doSearch(e)}>
                         <InputGroup>
