@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         DB::table("recipes")->insert([
             "author" => 1,
             "title" => "Poulet & légumes",
-            "image" => "poulet-legumes.jpeg"
+            "image" => "recipes/poulet-legumes.jpeg"
         ]);
 
     }
