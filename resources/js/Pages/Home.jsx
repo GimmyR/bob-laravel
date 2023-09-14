@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
+import RecipeItem from "../Components/RecipeItem";
 
-export default function Home() {
+export default function Home({ recipes }) {
 
     return (
-        <div>
-            <p>Home !</p>
-        </div>
+        <Container className="bg-light px-5 pt-4 pb-4 recipes-container">
+            <Row>
+                {recipes.map(r => <RecipeItem key={r.id} lg={3} recipe={r}/>)}
+            </Row>
+        </Container>
     );
 
 }
