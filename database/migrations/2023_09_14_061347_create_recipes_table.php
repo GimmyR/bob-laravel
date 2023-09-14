@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("author")->constrained(table: "users")->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string("title")->unique();
             $table->string("image");
             $table->timestamps();
