@@ -20,6 +20,7 @@ const AccountNavDropdown = function({ user, setUser }) {
                 if(!res.error) {
                     setUser(null);
                     setShowDropdown(false);
+                    window.location.reload(false);
                 }
             }).catch(error => console.log("ERROR: ", error)));
     };
