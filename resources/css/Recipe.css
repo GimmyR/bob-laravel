@@ -1,0 +1,30 @@
+.recipe-title {
+    text-decoration: underline;
+}
+
+.recipe-by-author {
+    font-size: 15px;
+}
+
+.recipe-by {
+    margin-top: 1px;
+    color: #515151;
+}
+
+.recipe-author {
+    color: #AC9400;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.recipe-author:hover {
+    color: #C7AB00;
+}
+
+.recipe-instructions-title {
+    font-size: 25px;
+}
+
+.recipe-instructions-title-only {
+    text-decoration: underline;
+}
