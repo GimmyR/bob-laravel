@@ -1,0 +1,8 @@
+.instruction-item-details {
+    color: #575757;
+}
+
+.instruction-item-details-checked {
+    color: #b4b4b4;
+    text-decoration: line-through;
+}
