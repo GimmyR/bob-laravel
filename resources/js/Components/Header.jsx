@@ -46,7 +46,7 @@ export default function Header() {
                 <Container fluid>
                     <Navbar.Brand>
                         <Link href="/" onClick={toHome} className="header-navbar-brand">
-                            <Image src="/logo.png" className="header-navbar-brand-logo" fluid/>
+                            <Image src="/logo.png" className="header-navbar-brand-logo"/>
                         </Link>
                     </Navbar.Brand>
                     <Form className="d-flex col-lg-5" onSubmit={e => doSearch(e)}>
