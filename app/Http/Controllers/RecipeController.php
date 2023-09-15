@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class RecipeController extends Controller {
@@ -28,7 +29,8 @@ class RecipeController extends Controller {
         ])->get([ "id", "user_id", "title", "image" ]);
 
         return Inertia::render("Recipe", [
-            "recipe" => $recipe[0]
+            "recipe" => $recipe[0],
+            "user" => Auth::user()
         ]);
 
     }
