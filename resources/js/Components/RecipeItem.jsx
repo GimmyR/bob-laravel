@@ -16,7 +16,7 @@ const RecipeItem = function({ lg, recipe, hideAuthor }) {
         <Col lg={lg} className="p-3">
             <div className="shadow bg-light">
                 <div className="d-flex flex-column">
-                    <Link href="#" className="recipe-item-link" title={recipe.title}>
+                    <Link href={"/recipe/" + recipe.id} className="recipe-item-link" title={recipe.title}>
                         <div className="py-2 px-3 text-truncate">
                             <span className="text-success fw-bold recipe-item-title">{recipe.title}</span>
                         </div>
