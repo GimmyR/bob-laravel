@@ -19,4 +19,16 @@ class Recipe extends Model
         return $this->belongsTo(User::class);
 
     }
+
+    public function ingredients() {
+
+        return $this->hasMany(Ingredient::class);
+
+    }
+
+    public function instructions() {
+
+        return $this->hasMany(Instruction::class);
+
+    }
 }
