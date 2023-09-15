@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import RecipeItem from "../Components/RecipeItem";
+import Layout from "../Layout";
 
-export default function Home({ recipes }) {
+function Home({ recipes }) {
 
     return (
         <Container className="bg-light px-5 pt-4 pb-4 recipes-container">
@@ -13,3 +14,7 @@ export default function Home({ recipes }) {
     );
 
 }
+
+Home.layout = page => <Layout children={page}/>
+
+export default Home;
