@@ -6,8 +6,11 @@ import IngredientsList from "../Components/IngredientsList";
 import InstructionsList from "../Components/InstructionsList";
 import { Link } from "@inertiajs/react";
 import EditRecipeButton from "../Components/EditRecipeButton";
+import { useSelector } from "react-redux";
 
-function Recipe({ recipe, user }) {
+function Recipe({ recipe }) {
+
+    const user = useSelector((state) => state.user);
     
     return (
         <Container className="bg-light px-5 pt-5 pb-5 min-vh-100">

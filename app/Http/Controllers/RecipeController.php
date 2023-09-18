@@ -29,8 +29,7 @@ class RecipeController extends Controller {
         ])->get([ "id", "user_id", "title", "image" ]);
 
         return Inertia::render("Recipe", [
-            "recipe" => $recipe[0],
-            "user" => Auth::user()
+            "recipe" => $recipe[0]
         ]);
 
     }

@@ -27,7 +27,6 @@ const LoginModal = function({ show, handleClose, getUser, createAccount }) {
                 if(!response.data.error) {
                     getUser();
                     handleClose();
-                    window.location.reload(false);
                 } else if(response.data.message != null)
                     setError(response.data.message);
             }).catch(error => {

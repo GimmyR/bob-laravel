@@ -8,19 +8,25 @@ import AccountNavLink from "./AccountNavLink";
 import AccountNavDropdown from "./AccountNavDropdown";
 import LoginModal from "./LoginModal";
 import { Link } from "@inertiajs/react";
+import { useDispatch, useSelector } from "react-redux";
+import { UPDATE_USER } from "../store";
 
 export default function Header() {
 
     const [showLoginModal, setShowLoginModal] = useState(false);
-    const [userAccount, setUserAccount] = useState(null);
+
     const [search, setSearch] = useState("");
+
+    const user = useSelector((state) => state.user);
+    
+    const dispatch = useDispatch();
 
     const getUser = function() {
         fetch("/user/auth")
             .then(response => response.json()
             .then(res => {
                 if(res.data != null)
-                    setUserAccount(res.data);
+                    dispatch({ type: UPDATE_USER, payload: res.data });
             }).catch(error => console.log(error)));
     };
 
@@ -58,9 +64,9 @@ export default function Header() {
                     <Nav className="d-flex flex-row align-items-center">
                         <AddRecipeNavLink/>
                         <NotificationNavLink/>
-                        {userAccount == null
+                        {user == null
                         ? <AccountNavLink handleShow={() => setShowLoginModal(true)}/>
-                        : <AccountNavDropdown user={userAccount} setUser={setUserAccount}/>}
+                        : <AccountNavDropdown user={user}/>}
                     </Nav>
                 </Container>
             </Navbar>

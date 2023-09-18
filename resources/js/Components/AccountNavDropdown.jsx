@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { Button, NavDropdown } from "react-bootstrap";
 import '../../css/AccountNavDropdown.css';
 import ConfirmModal from "./ConfirmModal";
+import { useDispatch } from "react-redux";
+import { NULLIFY_USER } from "../store";
 
-const AccountNavDropdown = function({ user, setUser }) {
+const AccountNavDropdown = function({ user }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
 
     const [showConfirm, setShowConfirm] = useState(false);
+
+    const dispatch = useDispatch();
 
     const clickMyProfile = function() {
         
@@ -18,9 +22,8 @@ const AccountNavDropdown = function({ user, setUser }) {
             .then(response => response.json()
             .then(res => {
                 if(!res.error) {
-                    setUser(null);
+                    dispatch({ type: NULLIFY_USER });
                     setShowDropdown(false);
-                    window.location.reload(false);
                 }
             }).catch(error => console.log("ERROR: ", error)));
     };
