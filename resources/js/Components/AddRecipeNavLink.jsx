@@ -1,10 +1,11 @@
+import { router } from "@inertiajs/react";
 import React from "react";
 import { Nav } from "react-bootstrap";
 
 const AddRecipeNavLink = function() {
     
     const handleClick = function() {
-        
+        router.get("/add-recipe");
     };
 
     return (

@@ -28,10 +28,8 @@ Route::prefix("/user")->group(function() {
 
 });
 
-Route::prefix("/recipe")->group(function() {
+Route::get("/recipe/{id}", [RecipeController::class, "getRecipe"]);
 
-    Route::get("/{id}", [RecipeController::class, "getRecipe"]);
-
-});
+Route::get("/add-recipe", [RecipeController::class, "addRecipe"]);
 
 Route::get("/test", [TestController::class, "index"]);

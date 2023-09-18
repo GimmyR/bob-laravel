@@ -34,4 +34,10 @@ class RecipeController extends Controller {
 
     }
 
+    public function addRecipe() {
+
+        return Inertia::render("AddRecipe");
+
+    }
+
 }
