@@ -28,8 +28,10 @@ Route::prefix("/user")->group(function() {
 
 });
 
-Route::get("/recipe/{id}", [RecipeController::class, "getRecipe"]);
+Route::get("/recipe/{id}", [RecipeController::class, "getRecipe"])->name("one-recipe");
 
-Route::get("/add-recipe", [RecipeController::class, "addRecipe"]);
+Route::get("/add-recipe", [RecipeController::class, "addRecipe"])->name("add-recipe")->middleware("auth");
+
+Route::post("/save-recipe", [RecipeController::class, "saveRecipe"]);
 
 Route::get("/test", [TestController::class, "index"]);
