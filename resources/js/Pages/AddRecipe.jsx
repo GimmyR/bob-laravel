@@ -9,7 +9,7 @@ function AddRecipe() {
 
     const [error, setError] = useState(null);
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post } = useForm({
         title: "",
         image: null,
         ingredients: [],
@@ -18,7 +18,7 @@ function AddRecipe() {
 
     const saveRecipe = function() {
         setError(null);
-        post("/save-recipe", {
+        post("/add-recipe", {
             onError: (err) => {
                 if(err.title != undefined)
                     setError(err.title);
