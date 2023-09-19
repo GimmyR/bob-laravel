@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RecipeRequest;
+use App\Http\Requests\AddRecipeRequest;
+use App\Http\Requests\EditRecipeRequest;
 use App\Models\Recipe;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,7 @@ class RecipeController extends Controller {
 
     }
 
-    public function saveRecipe(RecipeRequest $request) {
+    public function doAddRecipe(AddRecipeRequest $request) {
 
         $user = Auth::user();
         $data = $request->all();
@@ -64,6 +65,60 @@ class RecipeController extends Controller {
         return to_route("one-recipe", [
             "id" => $recipe->id
         ]);
+
+    }
+
+    public function editRecipe(string $id) {
+
+        $recipes = Recipe::where("id", $id)->with([
+            "ingredients",
+            "instructions"
+        ])->get([ "id", "title", "image" ]);
+
+        return Inertia::render("EditRecipe", [
+            "recipe" => $recipes[0]
+        ]);
+
+    }
+
+    public function doEditRecipe(string $id, EditRecipeRequest $request) {
+
+        $user = Auth::user();
+
+        $recipes = Recipe::where("id", $id)->where("user_id", $user->id)->with([
+            "ingredients",
+            "instructions"
+        ])->get();
+
+        $this->updateRecipe($recipes[0], $request);
+
+        return to_route("one-recipe", [
+            "id" => $id
+        ]);
+
+    }
+
+    private function updateRecipe(Recipe $recipe, EditRecipeRequest $request) {
+
+        $inputs = $request->all();
+        $recipe->title = $inputs["title"];
+
+        if(isset($inputs["image"])) {
+            /** @var UploadedFile $image */
+            $image = $inputs["image"];
+            $imagePath = $image->store("recipes", "public");
+
+            if($recipe->image)
+                Storage::disk("public")->delete($recipe->image);
+
+            $recipe->image = $imagePath;
+        }
+
+        $recipe->ingredients()->delete();
+        $recipe->instructions()->delete();
+        $recipe->ingredients()->createMany($inputs["ingredients"]);
+        $recipe->instructions()->createMany($inputs["instructions"]);
+        $recipe->save();
 
     }
 
