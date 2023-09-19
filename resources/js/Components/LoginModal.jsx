@@ -23,7 +23,6 @@ const LoginModal = function({ show, handleClose, getUser, createAccount }) {
             email: email,
             password: password
         }).then(response => {
-                console.log(response);
                 if(!response.data.error) {
                     getUser();
                     handleClose();
