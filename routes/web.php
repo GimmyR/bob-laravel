@@ -32,6 +32,10 @@ Route::get("/recipe/{id}", [RecipeController::class, "getRecipe"])->name("one-re
 
 Route::get("/add-recipe", [RecipeController::class, "addRecipe"])->name("add-recipe")->middleware("auth");
 
-Route::post("/save-recipe", [RecipeController::class, "saveRecipe"]);
+Route::post("/add-recipe", [RecipeController::class, "doAddRecipe"])->middleware("auth");
+
+Route::get("/edit-recipe/{id}", [RecipeController::class, "editRecipe"])->name("edit-recipe")->middleware("auth");
+
+Route::post("/edit-recipe/{id}", [RecipeController::class, "doEditRecipe"])->middleware("auth");
 
 Route::get("/test", [TestController::class, "index"]);
