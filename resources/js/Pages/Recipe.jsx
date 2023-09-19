@@ -17,7 +17,7 @@ function Recipe({ recipe }) {
             <Row>
                 {recipe.image != null &&
                 <Col lg={3}>
-                    <Image src={"/" + recipe.image} fluid/>
+                    <Image src={"/storage/" + recipe.image} fluid/>
                 </Col>}
                 <Col lg={9} className="d-flex flex-column">
                     <h1 className="text-success mb-3 d-flex flex-row align-items-center recipe-title">

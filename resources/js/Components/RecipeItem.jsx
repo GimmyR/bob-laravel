@@ -20,7 +20,7 @@ const RecipeItem = function({ lg, recipe, hideAuthor }) {
                         <div className="py-2 px-3 text-truncate">
                             <span className="text-success fw-bold recipe-item-title">{recipe.title}</span>
                         </div>
-                        <Image src={recipe.image} fluid/>
+                        <Image src={"/storage/" + recipe.image} fluid/>
                     </Link>
                     <Row className="px-4 py-1">
                         <Col className="pt-1">
