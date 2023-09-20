@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -48,6 +50,18 @@ class UserController extends Controller
         $result["error"] = false;
 
         return $result;
+
+    }
+
+    public function getProfile(string $userId) {
+
+        $user = User::find($userId);
+        $auth = Auth::user();
+
+        return Inertia::render("Profile", [
+            "user" => $user,
+            "auth" => $auth
+        ]);
 
     }
 }

@@ -1,0 +1,7 @@
+.profile-nav-link {
+    text-decoration: none;
+}
+
+.profile-nav-link-active {
+    border-bottom: 3px solid #00c03a;
+}

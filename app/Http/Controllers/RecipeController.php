@@ -122,4 +122,12 @@ class RecipeController extends Controller {
 
     }
 
+    public function getRecipesByUser(string $userId) {
+
+        $recipes = Recipe::where("user_id", $userId)->with("user:id,name")->get([ "id", "user_id", "title", "image" ]);
+
+        return [ "error" => false, "message" => null, "data" => $recipes ];
+
+    }
+
 }

@@ -118,4 +118,12 @@ class FavoriteController extends Controller
         } return $result;
 
     }
+
+    public function getFavoritesByUser(string $userId) {
+
+        $favorites = Favorite::where("user_id", $userId)->with("recipe.user")->get();
+
+        return [ "error" => false, "message" => null, "data" => $favorites ];
+
+    }
 }

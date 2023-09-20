@@ -29,6 +29,8 @@ Route::prefix("/user")->group(function() {
 
     Route::get("/logout", [UserController::class, "logout"]);
 
+    Route::get("/profile/{userId}", [UserController::class, "getProfile"])->name("user.profile");
+
 });
 
 // RECIPE CONTROLLER :
@@ -43,6 +45,8 @@ Route::get("/edit-recipe/{id}", [RecipeController::class, "editRecipe"])->name("
 
 Route::post("/edit-recipe/{id}", [RecipeController::class, "doEditRecipe"])->middleware("auth");
 
+Route::get("/recipes/{userId}", [RecipeController::class, "getRecipesByUser"])->name("recipes.user");
+
 // FAVORITE CONTROLLER :
 
 Route::get("/add-favorite/{recipeId}", [FavoriteController::class, "addFavorite"])->name("add-favorite");
@@ -50,6 +54,8 @@ Route::get("/add-favorite/{recipeId}", [FavoriteController::class, "addFavorite"
 Route::get("/remove-favorite/{recipeId}", [FavoriteController::class, "removeFavorite"])->name("remove-favorite");
 
 Route::get("/is-favorite/{recipeId}", [FavoriteController::class, "isFavorite"])->name("is-favorite");
+
+Route::get("/favorites/{userId}", [FavoriteController::class, "getFavoritesByUser"])->name("favorites.user");
 
 // TEST :
 
