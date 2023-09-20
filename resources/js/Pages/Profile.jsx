@@ -17,7 +17,6 @@ function Profile({ user, auth }) {
     const getMyRecipes = function() {
         axios.get("/recipes/" + user.id)
             .then(response => {
-                console.log(response);
                 if(!response.data.error) {
                     setRecipes(response.data.data);
                     setFavorites([]);
