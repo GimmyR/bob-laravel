@@ -8,8 +8,6 @@ import AccountNavLink from "./AccountNavLink";
 import AccountNavDropdown from "./AccountNavDropdown";
 import LoginModal from "./LoginModal";
 import { Link } from "@inertiajs/react";
-import { useDispatch, useSelector } from "react-redux";
-import { UPDATE_USER } from "../store";
 
 export default function Header() {
 
@@ -17,16 +15,14 @@ export default function Header() {
 
     const [search, setSearch] = useState("");
 
-    const user = useSelector((state) => state.user);
-    
-    const dispatch = useDispatch();
+    const [user, setUser] = useState(null);
 
     const getUser = function() {
         fetch("/user/auth")
             .then(response => response.json()
             .then(res => {
                 if(res.data != null)
-                    dispatch({ type: UPDATE_USER, payload: res.data });
+                    setUser(res.data);
             }).catch(error => console.log(error)));
     };
 

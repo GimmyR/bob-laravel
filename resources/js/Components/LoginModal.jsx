@@ -23,10 +23,9 @@ const LoginModal = function({ show, handleClose, getUser, createAccount }) {
             email: email,
             password: password
         }).then(response => {
-                if(!response.data.error) {
-                    getUser();
-                    handleClose();
-                } else if(response.data.message != null)
+                if(!response.data.error)
+                    window.location.reload(false);
+                else if(response.data.message != null)
                     setError(response.data.message);
             }).catch(error => {
                 if(error.response.data.message != undefined)
