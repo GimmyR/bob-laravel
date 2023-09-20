@@ -3,13 +3,19 @@ import { Col, Image, Row } from "react-bootstrap";
 import '../../css/RecipeItem.css';
 import AddFavoriteButton from "./AddFavoriteButton";
 import { Link } from "@inertiajs/react";
+import axios from "axios";
 
 const RecipeItem = function({ lg, recipe, hideAuthor }) {
     
     const [isFavorite, setIsFavorite] = useState(false);
 
     const addFavorite = function() {
-        
+        axios.get("/" + (isFavorite ? "remove-favorite" : "add-favorite") + "/" + recipe.id)
+            .then(response => {
+                if(!response.data.error)
+                    setIsFavorite(!isFavorite);
+                else console.log(response.data.message);
+            }).catch(error => console.log("ERROR: ", error));
     };
 
     return (

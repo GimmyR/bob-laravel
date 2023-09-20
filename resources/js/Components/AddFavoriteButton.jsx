@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import '../../css/AddFavoriteButton.css';
+import axios from "axios";
 
 const AddFavoriteButton = function({ recipe, onClick, isFavorite, setIsFavorite }) {
     const getAdded = function() {
-        
+        axios.get("/is-favorite/" + recipe.id)
+            .then(response => {
+                if(!response.data.error)
+                    setIsFavorite(response.data.data);
+            }).catch(error => console.log("ERROR: ", error));
     };
 
     useEffect(() => getAdded(), []);
