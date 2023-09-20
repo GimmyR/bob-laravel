@@ -34,7 +34,7 @@ const RecipeItem = function({ lg, recipe, hideAuthor }) {
                         </Col>
                         {!hideAuthor && <Col className="d-flex flex-row justify-content-end align-items-center">
                             <span className="recipe-item-by me-2">by</span>
-                            <Link href="#" className="recipe-item-author">{recipe.user.name}</Link>
+                            <Link href={"/user/profile/" + recipe.user.id} className="recipe-item-author">{recipe.user.name}</Link>
                         </Col>}
                     </Row>
                 </div>

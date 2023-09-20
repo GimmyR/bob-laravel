@@ -31,7 +31,7 @@ function Recipe({ recipe }) {
                     <InstructionsList instructions={recipe.instructions}/>
                     <h5 className="d-flex flex-row justify-content-end align-items-center pe-2 recipe-by-author">
                         <span className="fst-italic me-2 recipe-by">by</span>
-                        <Link href="#" className="recipe-author">{recipe.user.name}</Link>
+                        <Link href={"/user/profile/" + recipe.user.id} className="recipe-author">{recipe.user.name}</Link>
                     </h5>
                 </Col>
             </Row>
