@@ -19,6 +19,8 @@ use App\Http\Controllers\UserController;
 
 Route::get("/", [RecipeController::class, "index"])->name("home");
 
+Route::post("/search", [RecipeController::class, "search"])->name("search");
+
 // USER CONTROLLER :
 
 Route::prefix("/user")->group(function() {

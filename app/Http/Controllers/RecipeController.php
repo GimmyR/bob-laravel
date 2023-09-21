@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddRecipeRequest;
 use App\Http\Requests\EditRecipeRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Recipe;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,22 @@ class RecipeController extends Controller {
     public function index() {
 
         // it's important to select the 'id' of User and the 'user_id' of Recipe to make the relationship
-        $recipes = Recipe::with("user:id,name")->get([ "id", "user_id", "title", "image" ]);
+        $recipes = Recipe::with("user:id,name")
+                            ->get([ "id", "user_id", "title", "image" ]);
+
+        return Inertia::render("Home", [
+            "recipes" => $recipes
+        ]);
+
+    }
+
+    public function search(SearchRequest $request) {
+
+        $search = $request->input("search");
+
+        $recipes = Recipe::where("title", "ilike", $search."%")
+                            ->with("user:id,name")
+                            ->get([ "id", "user_id", "title", "image" ]);
 
         return Inertia::render("Home", [
             "recipes" => $recipes

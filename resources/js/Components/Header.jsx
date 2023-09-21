@@ -6,13 +6,15 @@ import AddRecipeNavLink from "./AddRecipeNavLink";
 import NotificationNavLink from "./NotificationNavLink";
 import AccountNavLink from "./AccountNavLink";
 import AccountNavDropdown from "./AccountNavDropdown";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { useDispatch, useSelector } from "react-redux";
 import { UPDATE_USER } from "../store";
 
 export default function Header() {
 
-    const [search, setSearch] = useState("");
+    const { data, setData, post } = useForm({
+        search: ""
+    });
 
     const user = useSelector((state) => state.user);
 
@@ -28,7 +30,8 @@ export default function Header() {
     };
 
     const doSearch = function(event) {
-        
+        event.preventDefault();
+        post("/search");
     };
 
     useEffect(() => getUser(), []);
@@ -43,8 +46,8 @@ export default function Header() {
                 </Navbar.Brand>
                 <Form className="d-flex col-lg-5" onSubmit={e => doSearch(e)}>
                     <InputGroup>
-                        <Form.Control value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search"/>
-                        <ResetSearchButton onClick={() => setSearch("")}/>
+                        <Form.Control value={data.search} onChange={(e) => setData("search", e.target.value)} placeholder="Search"/>
+                        <ResetSearchButton onClick={() => setData("search", "")}/>
                     </InputGroup>
                 </Form>
                 <Nav className="d-flex flex-row align-items-center">
