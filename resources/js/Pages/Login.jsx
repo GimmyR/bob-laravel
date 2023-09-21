@@ -7,8 +7,12 @@ import ForgotPasswordLink from "../Components/ForgotPasswordLink";
 import LoginButton from "../Components/LoginButton";
 import CreateAccountLink from "../Components/CreateAccountLink";
 import { useForm } from "@inertiajs/react";
+import { useDispatch } from "react-redux";
+import { UPDATE_USER } from "../store";
 
 function Login() {
+
+    const dispatch = useDispatch();
 
     const { data, setData, post } = useForm({
         email: "",
@@ -17,9 +21,20 @@ function Login() {
 
     const [error, setError] = useState(null);
 
+    const getUser = function() {
+        fetch("/user/auth")
+            .then(response => response.json()
+            .then(res => {
+                if(res.data != null)
+                    dispatch({ type: UPDATE_USER, payload: res.data});
+            }).catch(error => console.log(error)));
+    };
+
     const connect = function() {
         setError(null);
-        post("/user/login");
+        post("/user/login", {
+            onSuccess: () => getUser()
+        });
     };
 
     const createAccount = function() {

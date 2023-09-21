@@ -7,19 +7,23 @@ import NotificationNavLink from "./NotificationNavLink";
 import AccountNavLink from "./AccountNavLink";
 import AccountNavDropdown from "./AccountNavDropdown";
 import { Link } from "@inertiajs/react";
+import { useDispatch, useSelector } from "react-redux";
+import { UPDATE_USER } from "../store";
 
 export default function Header() {
 
     const [search, setSearch] = useState("");
 
-    const [user, setUser] = useState(null);
+    const user = useSelector((state) => state.user);
+
+    const dispatch = useDispatch();
 
     const getUser = function() {
         fetch("/user/auth")
             .then(response => response.json()
             .then(res => {
                 if(res.data != null)
-                    setUser(res.data);
+                    dispatch({ type: UPDATE_USER, payload: res.data});
             }).catch(error => console.log(error)));
     };
 

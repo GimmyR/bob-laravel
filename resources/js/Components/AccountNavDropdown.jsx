@@ -3,12 +3,16 @@ import { Button, NavDropdown } from "react-bootstrap";
 import '../../css/AccountNavDropdown.css';
 import ConfirmModal from "./ConfirmModal";
 import { router } from "@inertiajs/react";
+import { useDispatch } from "react-redux";
+import { NULLIFY_USER } from "../store";
 
 const AccountNavDropdown = function({ user }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
 
     const [showConfirm, setShowConfirm] = useState(false);
+
+    const dispatch = useDispatch();
 
     const clickMyProfile = function() {
         router.get("/user/profile/" + user.id);
@@ -18,8 +22,10 @@ const AccountNavDropdown = function({ user }) {
         fetch("/user/logout")
             .then(response => response.json()
             .then(res => {
-                if(!res.error)
+                if(!res.error) {
+                    dispatch({ type: NULLIFY_USER });
                     window.location.reload(false);
+                }
             }).catch(error => console.log("ERROR: ", error)));
     };
 
