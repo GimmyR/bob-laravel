@@ -61,7 +61,7 @@ export default function Header() {
                         <AddRecipeNavLink/>
                         <NotificationNavLink/>
                         {user == null
-                        ? <AccountNavLink handleShow={() => setShowLoginModal(true)}/>
+                        ? <AccountNavLink/>
                         : <AccountNavDropdown user={user}/>}
                     </Nav>
                 </Container>
