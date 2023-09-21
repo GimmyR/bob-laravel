@@ -23,7 +23,7 @@ Route::get("/", [RecipeController::class, "index"])->name("home");
 
 Route::prefix("/user")->group(function() {
 
-    Route::get("/connect", [UserController::class, "loginForm"])->name("connect");
+    Route::get("/connect", [UserController::class, "loginForm"])->name("user.connect");
 
     Route::post("/login", [UserController::class, "login"]);
 
