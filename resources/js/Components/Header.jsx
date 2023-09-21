@@ -6,12 +6,9 @@ import AddRecipeNavLink from "./AddRecipeNavLink";
 import NotificationNavLink from "./NotificationNavLink";
 import AccountNavLink from "./AccountNavLink";
 import AccountNavDropdown from "./AccountNavDropdown";
-import LoginModal from "./LoginModal";
 import { Link } from "@inertiajs/react";
 
 export default function Header() {
-
-    const [showLoginModal, setShowLoginModal] = useState(false);
 
     const [search, setSearch] = useState("");
 
@@ -30,44 +27,31 @@ export default function Header() {
         
     };
 
-    const toHome = function() {
-        
-    };
-
-    const createAccount = function() {
-
-
-
-    };
-
     useEffect(() => getUser(), []);
 
     return (
-        <>
-            <Navbar bg="success" variant="dark" id="header">
-                <Container fluid>
-                    <Navbar.Brand>
-                        <Link href="/" onClick={toHome} className="header-navbar-brand">
-                            <Image src="/logo.png" className="header-navbar-brand-logo"/>
-                        </Link>
-                    </Navbar.Brand>
-                    <Form className="d-flex col-lg-5" onSubmit={e => doSearch(e)}>
-                        <InputGroup>
-                            <Form.Control value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search"/>
-                            <ResetSearchButton onClick={() => setSearch("")}/>
-                        </InputGroup>
-                    </Form>
-                    <Nav className="d-flex flex-row align-items-center">
-                        <AddRecipeNavLink/>
-                        <NotificationNavLink/>
-                        {user == null
-                        ? <AccountNavLink/>
-                        : <AccountNavDropdown user={user}/>}
-                    </Nav>
-                </Container>
-            </Navbar>
-            <LoginModal show={showLoginModal} handleClose={() => setShowLoginModal(false)} getUser={getUser} createAccount={createAccount}/>
-        </>
+        <Navbar bg="success" variant="dark" id="header">
+            <Container fluid>
+                <Navbar.Brand>
+                    <Link href="/" className="header-navbar-brand">
+                        <Image src="/logo.png" className="header-navbar-brand-logo"/>
+                    </Link>
+                </Navbar.Brand>
+                <Form className="d-flex col-lg-5" onSubmit={e => doSearch(e)}>
+                    <InputGroup>
+                        <Form.Control value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search"/>
+                        <ResetSearchButton onClick={() => setSearch("")}/>
+                    </InputGroup>
+                </Form>
+                <Nav className="d-flex flex-row align-items-center">
+                    <AddRecipeNavLink/>
+                    <NotificationNavLink/>
+                    {user == null
+                    ? <AccountNavLink/>
+                    : <AccountNavDropdown user={user}/>}
+                </Nav>
+            </Container>
+        </Navbar>
     );
 
 };

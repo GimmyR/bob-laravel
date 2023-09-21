@@ -7,7 +7,7 @@ const EmailInput = function({ value, setValue }) {
             <InputGroup.Text>
                 <i className="bi bi-at"></i>
             </InputGroup.Text>
-            <Form.Control defaultValue={value} onChange={(e) => setValue(e.target.value)} placeholder="Email"/>
+            <Form.Control defaultValue={value} onChange={(e) => setValue("email", e.target.value)} placeholder="Email"/>
         </InputGroup>
     );
 };

@@ -9,23 +9,25 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    public function loginForm() {
+
+        $user = Auth::user();
+        if($user)
+            return to_route("home");
+
+        return Inertia::render("Login");
+
+    }
+
     public function login(LoginRequest $request) {
 
-        $result = [ "error" => true, "message" => null, "data" => null ];
-        
         $credentials = $request->validated();
 
-        $result["error"] = !Auth::attempt($credentials);
-
-        if(!$result["error"]) {
+        if(Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
 
-        } else {
-
-            $result["message"] = "An user info is not correct !";
-
-        } return $result;
+        } return to_route("home");
 
     }
 

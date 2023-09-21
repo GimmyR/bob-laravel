@@ -7,7 +7,7 @@ const PasswordInput = function({ value, setValue }) {
             <InputGroup.Text>
                 <i className="bi bi-lock"></i>
             </InputGroup.Text>
-            <Form.Control defaultValue={value} onChange={(e) => setValue(e.target.value)} type="password" placeholder="Password"/>
+            <Form.Control defaultValue={value} onChange={(e) => setValue("password", e.target.value)} type="password" placeholder="Password"/>
         </InputGroup>
     );
 };
