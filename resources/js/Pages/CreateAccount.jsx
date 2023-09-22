@@ -24,11 +24,20 @@ function CreateAccount() {
     const createAccount = function() {
         setError(null);
 
-        if(data.password == confirmPassword) {
+        if(data.password == confirmPassword)
+            post("/user/register", {
+                onError: (postError) => {
+                    if(postError.name)
+                        setError(postError.name);
+                    else if(postError.email)
+                        setError(postError.email);
+                    else if(postError.password)
+                        setError(postError.password);
+                    else setError("Unknown error. Please contact an administrator.");
+                }
+            });
 
-            console.log("FAIS LE TRUC !");
-
-        } else setError("The passwords don't match.");
+        else setErr("The passwords don't match.");
     };
 
     const login = function() {

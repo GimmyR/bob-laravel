@@ -37,6 +37,8 @@ Route::prefix("/user")->group(function() {
 
     Route::get("/create-account", [UserController::class, "createAccount"])->name("user.create-account");
 
+    Route::post("/register", [UserController::class, "register"])->name("user.register");
+
 });
 
 // RECIPE CONTROLLER :
