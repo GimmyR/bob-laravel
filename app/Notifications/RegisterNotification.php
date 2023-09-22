@@ -35,9 +35,9 @@ class RegisterNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Bread on Board - Inscription')
+                    ->subject('Inscription')
                     ->line('Your account is successfully created. Now, you just need to activate it by clicking this :')
-                    ->action('Activate', url('/user/activate/'.$notifiable->id.'/'.$notifiable->activation_token))
+                    ->action('Activate account', url('/user/activate/'.$notifiable->id.'/'.$notifiable->activation_token))
                     ->line('Thank you for using our application!');
     }
 
