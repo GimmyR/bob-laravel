@@ -90,20 +90,26 @@ class UserController extends Controller
 
             if(count($users) == 0) {
 
-                $user = User::create([
-                    "name" => $inputs["name"],
-                    "email" => $inputs["email"],
-                    "password" => Hash::make($inputs["password"]),
-                    "activation_token" => bin2hex(random_bytes(10))
-                ]);
-                
-                $user->notify(new RegisterNotification());
+                $this->signUp($inputs);
 
                 return to_route("user.connect");
 
             } else return redirect()->back()->withErrors([ "email" => "This email is already used by someone." ])->withInput();
 
         } else return redirect()->back()->withErrors([ "name" => "This username is already used by someone." ])->withInput();
+
+    }
+
+    private function signUp($inputs) {
+
+        $user = User::create([
+            "name" => $inputs["name"],
+            "email" => $inputs["email"],
+            "password" => Hash::make($inputs["password"]),
+            "activation_token" => bin2hex(random_bytes(10))
+        ]);
+        
+        $user->notify(new RegisterNotification());
 
     }
 }
