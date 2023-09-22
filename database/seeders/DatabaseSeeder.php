@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             "email" => "gimmyarazafimbelo2@gmail.com",
             "image" => null,
             "password" => Hash::make("mdpGimmy"),
-            "activation" => true
+            "activation_token" => null
         ]);
         
         DB::table("recipes")->insert([
