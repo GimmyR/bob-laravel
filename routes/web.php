@@ -39,6 +39,8 @@ Route::prefix("/user")->group(function() {
 
     Route::post("/register", [UserController::class, "register"])->name("user.register");
 
+    Route::get("/activate/{user}/{token}", [UserController::class, "confirm"])->name("user.confirm");
+
 });
 
 // RECIPE CONTROLLER :

@@ -112,4 +112,20 @@ class UserController extends Controller
         $user->notify(new RegisterNotification());
 
     }
+
+    public function confirm(User $user, string $token) {
+
+        $parameters = [];
+        
+        if($user->activation_token == $token) {
+
+            $user->activation_token = null;
+            $user->save();
+            $parameters["success"] = "Your account is activated now.";
+
+        } else $parameters["error"] = "Activation token is wrong.";
+
+        return Inertia::render("ConfirmAccount", $parameters);
+
+    }
 }
