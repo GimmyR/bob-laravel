@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\RegisterNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,17 +11,12 @@ class TestController extends Controller
 {
     public function index() {
 
-        /*$user = User::create([
-            "name" => "Gimmy",
-            "email" => "gimmyarazafimbelo2@gmail.com",
-            "image" => null,
-            "password" => Hash::make("mdpGimmy"),
-            "activation" => true
-        ]);
+        /*
+        $user = User::find(1);
+        $user->notify(new RegisterNotification());
+        */
 
-        return $user;*/
-
-        return null;
+        return true;
 
     }
 }
