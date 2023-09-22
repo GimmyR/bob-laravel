@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Layout from "../Layout";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Alert, Col, Container, Form, Row } from "react-bootstrap";
 import EmailInput from "../Components/EmailInput";
 import PasswordInput from "../Components/PasswordInput";
 import ForgotPasswordLink from "../Components/ForgotPasswordLink";
 import LoginButton from "../Components/LoginButton";
 import CreateAccountLink from "../Components/CreateAccountLink";
-import { useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { useDispatch } from "react-redux";
 import { UPDATE_USER } from "../store";
 
@@ -38,7 +38,7 @@ function Login() {
     };
 
     const createAccount = function() {
-
+        router.get("/user/create-account");
     };
 
     return (
