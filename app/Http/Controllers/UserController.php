@@ -68,4 +68,10 @@ class UserController extends Controller
         ]);
 
     }
+
+    public function createAccount() {
+
+        return Inertia::render("CreateAccount");
+
+    }
 }

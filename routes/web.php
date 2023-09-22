@@ -35,6 +35,8 @@ Route::prefix("/user")->group(function() {
 
     Route::get("/profile/{userId}", [UserController::class, "getProfile"])->name("user.profile");
 
+    Route::get("/create-account", [UserController::class, "createAccount"])->name("user.create-account");
+
 });
 
 // RECIPE CONTROLLER :
