@@ -6,7 +6,7 @@ import PasswordInput from "../Components/PasswordInput";
 import ForgotPasswordLink from "../Components/ForgotPasswordLink";
 import LoginButton from "../Components/LoginButton";
 import CreateAccountLink from "../Components/CreateAccountLink";
-import { router, useForm } from "@inertiajs/react";
+import { router, useForm, usePage } from "@inertiajs/react";
 import { useDispatch } from "react-redux";
 import { UPDATE_USER } from "../store";
 
@@ -20,6 +20,8 @@ function Login() {
     });
 
     const [error, setError] = useState(null);
+
+    const { success } = usePage().props;
 
     const getUser = function() {
         fetch("/user/auth")
@@ -47,6 +49,7 @@ function Login() {
                 <Col lg={6} className="border rounded-1 mt-3 pt-5 pb-4 px-4">
                     <Form>
                         {error != null && <Alert variant="danger" className="py-1">{error}</Alert>}
+                        {success != null && <Alert variant="success" className="py-1">{success}</Alert>}
                         <EmailInput value={data.email} setValue={setData}/>
                         <PasswordInput value={data.password} setValue={setData}/>
                         <ForgotPasswordLink/>

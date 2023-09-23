@@ -80,6 +80,8 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request) {
 
+        $errors = [];
+        
         $inputs = $request->validated();
 
         $users = User::where("name", $inputs["name"])->get();
@@ -92,11 +94,13 @@ class UserController extends Controller
 
                 $this->signUp($inputs);
 
-                return to_route("user.connect");
+                return to_route("user.connect")->with("success", "Your account is successfully created. Please check your email for confirmation.");
 
-            } else return redirect()->back()->withErrors([ "email" => "This email is already used by someone." ])->withInput();
+            } else $errors["email"] = "This email is already used by someone.";
 
-        } else return redirect()->back()->withErrors([ "name" => "This username is already used by someone." ])->withInput();
+        } else $errors["name"] = "This username is already used by someone.";
+
+        return redirect()->back()->withErrors($errors)->withInput();
 
     }
 
