@@ -37,7 +37,7 @@ function CreateAccount() {
                 }
             });
 
-        else setErr("The passwords don't match.");
+        else setError("The passwords don't match.");
     };
 
     const login = function() {
