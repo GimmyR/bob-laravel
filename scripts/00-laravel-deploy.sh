@@ -11,3 +11,6 @@ php artisan route:cache
 
 echo "Running migrations..."
 php artisan migrate --force
+
+echo "Making symbolic link between /public and /storage..."
+php artisan storage:link
