@@ -30,7 +30,7 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route("home"));
+            return redirect(secure: true)->intended(route("home"), secure: true);
 
         } return to_route("user.connect");
 
