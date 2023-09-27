@@ -57,6 +57,10 @@ Route::post("/edit-recipe/{id}", [RecipeController::class, "doEditRecipe"])->mid
 
 Route::get("/recipes/{userId}", [RecipeController::class, "getRecipesByUser"])->name("recipes.user");
 
+Route::get("/api/all-recipes", [RecipeController::class, "getAllRecipes"]);
+
+Route::get("/api/recipe/{id}", [RecipeController::class, "getRecipe_API"]);
+
 // FAVORITE CONTROLLER :
 
 Route::get("/add-favorite/{recipeId}", [FavoriteController::class, "addFavorite"])->name("add-favorite");

@@ -25,6 +25,17 @@ class RecipeController extends Controller {
 
     }
 
+    public function getAllRecipes() {
+
+        $response = [ "error" => false, "message" => null, "data" => null ];
+        
+        $response["data"] = Recipe::with("user:id,name")
+                            ->get([ "id", "user_id", "title", "image" ]);
+
+        return $response;
+
+    }
+
     public function search(SearchRequest $request) {
 
         $search = $request->input("search");
@@ -50,6 +61,20 @@ class RecipeController extends Controller {
         return Inertia::render("Recipe", [
             "recipe" => $recipes[0]
         ]);
+
+    }
+
+    public function getRecipe_API(int $id) {
+
+        $response = [ "error" => false, "message" => null, "data" => null ];
+        
+        $response["data"] = Recipe::where("id", $id)->with([
+            "user:id,name",
+            "ingredients",
+            "instructions"
+        ])->get([ "id", "user_id", "title", "image" ])[0];
+
+        return $response;
 
     }
 
