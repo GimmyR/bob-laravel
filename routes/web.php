@@ -43,6 +43,10 @@ Route::prefix("/user")->group(function() {
 
 });
 
+Route::post("/api/user/login", [UserController::class, "login_API"]);
+
+Route::get("/api/user/csrf-token", [UserController::class, "getCSRFToken"]);
+
 // RECIPE CONTROLLER :
 
 Route::get("/recipe/{id}", [RecipeController::class, "getRecipe"])->name("one-recipe");

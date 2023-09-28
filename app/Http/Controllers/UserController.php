@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Notifications\RegisterNotification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -33,6 +34,33 @@ class UserController extends Controller
             return to_route("home");
 
         } return to_route("user.connect");
+
+    }
+
+    public function login_API(LoginRequest $request) {
+
+        $response = [ 
+            "error" => true, 
+            "message" => null, 
+            "data" => null
+        ];
+        
+        $credentials = $request->validated();
+
+        if(Auth::attempt($credentials)) {
+
+            $request->session()->regenerate();
+            $response["error"] = false;
+
+        } else $response["message"] = "Email or password is invalid";
+        
+        return $response;
+
+    }
+
+    public function getCSRFToken() {
+
+        return csrf_token();
 
     }
 
