@@ -65,6 +65,8 @@ Route::get("/api/all-recipes", [RecipeController::class, "getAllRecipes"]);
 
 Route::get("/api/recipe/{id}", [RecipeController::class, "getRecipe_API"]);
 
+Route::post("/api/edit-recipe/{id}", [RecipeController::class, "doEditRecipe_API"]);
+
 // FAVORITE CONTROLLER :
 
 Route::get("/add-favorite/{recipeId}", [FavoriteController::class, "addFavorite"])->name("add-favorite");

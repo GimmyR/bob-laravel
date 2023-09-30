@@ -163,6 +163,53 @@ class RecipeController extends Controller {
 
     }
 
+    public function doEditRecipe_API(string $id, EditRecipeRequest $request) {
+
+        $response = [
+            "error" => false,
+            "message" => null,
+            "data" => null
+        ];
+        
+        $user = Auth::user();
+
+        $recipes = Recipe::where("id", $id)->where("user_id", $user->id)->with([
+            "ingredients",
+            "instructions"
+        ])->get();
+
+        $response["data"] = $this->updateRecipe_API($recipes[0], $request);
+
+        return $response;
+
+    }
+
+    private function updateRecipe_API(Recipe $recipe, EditRecipeRequest $request) {
+
+        $recipe->title = $request->input("title");
+        
+        /** @var UploadedFile $file */
+        $file = $request->file("image");
+
+        if($file) {
+
+            $imagePath = $file->store("recipes", "public");
+            if($recipe->image)
+                Storage::disk("public")->delete($recipe->image);
+            $recipe->image = $imagePath;
+
+        }
+
+        $recipe->ingredients()->delete();
+        $recipe->instructions()->delete();
+        $recipe->ingredients()->createMany(json_decode($request->input("ingredients"), true));
+        $recipe->instructions()->createMany(json_decode($request->input("instructions"), true));
+        $recipe->save();
+
+        return $recipe->id;
+
+    }
+
     public function getRecipesByUser(string $userId) {
 
         $recipes = Recipe::where("user_id", $userId)->with("user:id,name")->get([ "id", "user_id", "title", "image" ]);
