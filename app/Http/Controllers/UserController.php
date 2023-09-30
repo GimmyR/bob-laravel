@@ -160,4 +160,18 @@ class UserController extends Controller
         return Inertia::render("ConfirmAccount", $parameters);
 
     }
+
+    public function getProfile_API(string $userId) {
+
+        $response = [
+            "error" => false,
+            "message" => null,
+            "data" => null
+        ];
+        
+        $response["data"] = User::find($userId);
+
+        return $response;
+
+    }
 }

@@ -45,6 +45,8 @@ Route::prefix("/user")->group(function() {
 
 Route::post("/api/user/login", [UserController::class, "login_API"]);
 
+Route::get("/api/user/profile/{userId}", [UserController::class, "getProfile_API"]);
+
 Route::get("/api/user/csrf-token", [UserController::class, "getCSRFToken"]);
 
 // RECIPE CONTROLLER :
@@ -64,6 +66,8 @@ Route::get("/recipes/{userId}", [RecipeController::class, "getRecipesByUser"])->
 Route::get("/api/all-recipes", [RecipeController::class, "getAllRecipes"]);
 
 Route::get("/api/recipe/{id}", [RecipeController::class, "getRecipe_API"]);
+
+Route::post("/api/add-recipe/", [RecipeController::class, "doAddRecipe_API"]);
 
 Route::post("/api/edit-recipe/{id}", [RecipeController::class, "doEditRecipe_API"]);
 
