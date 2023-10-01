@@ -6,6 +6,7 @@ use App\Http\Requests\AddRecipeRequest;
 use App\Http\Requests\EditRecipeRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Recipe;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -40,13 +41,29 @@ class RecipeController extends Controller {
 
         $search = $request->input("search");
 
-        $recipes = Recipe::where("title", "ilike", $search."%")
+        $recipes = Recipe::where("title", "ilike", "%".$search."%")
                             ->with("user:id,name")
                             ->get([ "id", "user_id", "title", "image" ]);
 
         return Inertia::render("Home", [
             "recipes" => $recipes
         ]);
+
+    }
+
+    public function search_API(Request $request) {
+
+        $search = $request->input("search");
+
+        $recipes = Recipe::where("title", "ilike", "%".$search."%")
+                            ->with("user:id,name")
+                            ->get([ "id", "user_id", "title", "image" ]);
+
+        return [
+            "error" => false,
+            "message" => null,
+            "data" => $recipes
+        ];
 
     }
 

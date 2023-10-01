@@ -21,6 +21,8 @@ Route::get("/", [RecipeController::class, "index"])->name("home");
 
 Route::post("/search", [RecipeController::class, "search"])->name("search");
 
+Route::post("/api/search", [RecipeController::class, "search_API"]);
+
 // USER CONTROLLER :
 
 Route::prefix("/user")->group(function() {
