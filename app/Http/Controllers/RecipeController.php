@@ -264,4 +264,46 @@ class RecipeController extends Controller {
 
     }
 
+    public function removeRecipe_API(string $id) {
+
+        $response = [
+            "error" => false,
+            "message" => null,
+            "data" => null
+        ];
+
+        $recipe = Recipe::find($id);
+
+        if($recipe) {
+
+            $user = Auth::user();
+
+            if($user) {
+
+                if($recipe->user_id == $user->id)
+                    $recipe->delete();
+
+                else {
+
+                    $response["error"] = true;
+                    $response["message"] = "This recipe doesn't belong to you.";
+
+                }
+
+            } else {
+
+                $response["error"] = true;
+                $response["message"] = "You are not authenticated.";
+
+            }
+
+        } else {
+
+            $response["error"] = true;
+            $response["message"] = "Recipe not found.";
+
+        } return $response;
+
+    }
+
 }
