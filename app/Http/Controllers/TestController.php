@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use App\Models\User;
 use App\Notifications\RegisterNotification;
 use Illuminate\Http\Request;
@@ -15,6 +16,9 @@ class TestController extends Controller
         $user = User::find(1);
         $user->notify(new RegisterNotification());
         */
+
+        $recipes = Recipe::all();
+        $recipes->update([ "image" => null ]);
 
         return true;
 
