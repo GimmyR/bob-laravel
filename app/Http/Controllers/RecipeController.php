@@ -108,11 +108,11 @@ class RecipeController extends Controller {
 
         /** @var UploadedFile $image */
         $image = $data["image"];
-        $imagePath = $image->store("recipes", "public");
+        $imageData = base64_encode(file_get_contents($image->path()));
 
         $recipe = Recipe::create([
             "title" => $data["title"],
-            "image" => $imagePath,
+            "image" => $imageData,
             "user_id" => $user->id
         ]);
 
@@ -164,12 +164,7 @@ class RecipeController extends Controller {
         if(isset($inputs["image"])) {
             /** @var UploadedFile $image */
             $image = $inputs["image"];
-            $imagePath = $image->store("recipes", "public");
-
-            if($recipe->image)
-                Storage::disk("public")->delete($recipe->image);
-
-            $recipe->image = $imagePath;
+            $recipe->image = base64_encode(file_get_contents($image->path()));
         }
 
         $recipe->ingredients()->delete();
@@ -192,12 +187,12 @@ class RecipeController extends Controller {
 
         /** @var UploadedFile $file */
         $file = $request->file("image");
-        $imagePath = $file->store("recipes", "public");
+        $imageData = base64_encode(file_get_contents($file->path()));
 
         $recipe = Recipe::create([
             "user_id" => $user->id,
             "title" => $request->input("title"),
-            "image" => $imagePath
+            "image" => $imageData
         ]);
 
         $recipe->ingredients()->createMany(json_decode($request->input("ingredients"), true));
@@ -236,15 +231,8 @@ class RecipeController extends Controller {
         
         /** @var UploadedFile $file */
         $file = $request->file("image");
-
-        if($file) {
-
-            $imagePath = $file->store("recipes", "public");
-            if($recipe->image)
-                Storage::disk("public")->delete($recipe->image);
-            $recipe->image = $imagePath;
-
-        }
+        if($file)
+            $recipe->image = base64_encode(file_get_contents($file->path()));
 
         $recipe->ingredients()->delete();
         $recipe->instructions()->delete();
