@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void {
 
-        DB::table("users")->insert([
+        /*DB::table("users")->insert([
             "name" => "Gimmy",
             "email" => "gimmyarazafimbelo2@gmail.com",
             "image" => null,
@@ -116,6 +116,10 @@ class DatabaseSeeder extends Seeder
         DB::table("instructions")->insert([
             "recipe_id" => 1,
             "details" => "Ajouter deux cuillerées d'huile d'olive, une cuillerée de purée de piment et un citron pressé"
+        ]);*/
+
+        DB::table("recipes")->update([
+            "image" => null
         ]);
 
     }
