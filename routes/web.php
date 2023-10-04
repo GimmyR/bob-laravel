@@ -87,4 +87,4 @@ Route::get("/favorites/{userId}", [FavoriteController::class, "getFavoritesByUse
 
 // TEST :
 
-Route::get("/test", [TestController::class, "index"]);
+//Route::get("/test", [TestController::class, "index"]);

@@ -12,14 +12,7 @@ class TestController extends Controller
 {
     public function index() {
 
-        /*
-        $user = User::find(1);
-        $user->notify(new RegisterNotification());
-        */
-
-        Recipe::where("id", ">", 0)->update([ "image" => null ]);
-
-        return to_route("home");
+        return true;
 
     }
 }
