@@ -20,7 +20,7 @@ class TestController extends Controller
         $recipes = Recipe::all();
         $recipes->update([ "image" => null ]);
 
-        return true;
+        return to_route("home");
 
     }
 }
