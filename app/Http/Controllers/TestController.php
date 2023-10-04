@@ -17,8 +17,7 @@ class TestController extends Controller
         $user->notify(new RegisterNotification());
         */
 
-        $recipes = Recipe::all();
-        $recipes->update([ "image" => null ]);
+        Recipe::where("id", ">", 0)->update([ "image" => null ]);
 
         return to_route("home");
 
