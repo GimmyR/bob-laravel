@@ -15,7 +15,7 @@ const RecipeItem = function({ lg, recipe, hideAuthor }) {
                 if(!response.data.error)
                     setIsFavorite(!isFavorite);
                 else console.log(response.data.message);
-            }).catch(error => console.log("ERROR1: ", error));
+            }).catch(error => console.log("ERROR: ", error));
     };
 
     return (
