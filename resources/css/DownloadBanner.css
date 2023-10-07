@@ -1,0 +1,12 @@
+.download-banner-container-fluid {
+    background-color: #ddce00;
+}
+
+.download-banner-container, .download-banner-row, .download-banner-text-buttons, .download-banner-image {
+    height: 350px;
+}
+
+.banner-image {
+    background-image: url("../../public/bread-on-board-mobile.png");
+    background-size: cover;
+}
