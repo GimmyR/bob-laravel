@@ -7,24 +7,29 @@
     "file": "assets/bootstrap-icons-cfe45b98.woff2",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
+  "public/bread-on-board-mobile.png": {
+    "file": "assets/bread-on-board-mobile-1c6251c2.png",
+    "src": "public/bread-on-board-mobile.png"
+  },
   "resources/css/app.css": {
     "file": "assets/app-4ed993c7.js",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app-9b105ed5.css",
+    "file": "assets/app-a7edab88.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
     "assets": [
+      "assets/bread-on-board-mobile-1c6251c2.png",
       "assets/bootstrap-icons-cfe45b98.woff2",
       "assets/bootstrap-icons-999550fa.woff"
     ],
     "css": [
-      "assets/app-9b105ed5.css"
+      "assets/app-a7edab88.css"
     ],
-    "file": "assets/app-e168c68a.js",
+    "file": "assets/app-d0f73b30.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }
