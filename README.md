@@ -12,7 +12,27 @@ Bread on Board (littéralement "pain sur la planche") est une application web d�
 
 ## Variables d'environnement
 
-Les variables d'environnement qu'il faut absolument fournir sont *APP_NAME*, *APP_ENV*, *APP_KEY*, *APP_DEBUG*, *APP_URL*, *DB_CONNECTION*, *DB_HOST*, *DB_PORT*, *DB_DATABASE*, *DB_USERNAME*, *DB_PASSWORD*, *MAIL_MAILER*, *MAIL_HOST*, *MAIL_PORT*, *MAIL_USERNAME*, *MAIL_PASSWORD*, *MAIL_ENCRYPTION*, *MAIL_FROM_ADDRESS*, *MAIL_FROM_NAME*
+Les variables d'environnement qu'il faut absolument fournir sont :
+
+* *APP_NAME*
+* *APP_ENV*
+* *APP_KEY*
+* *APP_DEBUG*
+* *APP_URL*
+* *DB_CONNECTION*
+* *DB_HOST*
+* *DB_PORT*
+* *DB_DATABASE*
+* *DB_USERNAME*
+* *DB_PASSWORD*
+* *MAIL_MAILER*
+* *MAIL_HOST*
+* *MAIL_PORT*
+* *MAIL_USERNAME*
+* *MAIL_PASSWORD*
+* *MAIL_ENCRYPTION*
+* *MAIL_FROM_ADDRESS*
+* *MAIL_FROM_NAME*
 
 ## Installation des dépendances
 
