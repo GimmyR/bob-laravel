@@ -12,5 +12,5 @@ php artisan route:cache
 echo "Running migrations..."
 php artisan migrate --force
 
-#echo "Generating App Key..."
-#php artisan key:generate --show
+echo "Generating App Key..."
+php artisan key:generate --show
