@@ -12,15 +12,11 @@ Bread on Board (littéralement "pain sur la planche") est une application web d�
 
 ## Variables d'environnement
 
-Les variables d'environnement qu'il faut absolument fournir sont celles qui sont précédées par les préfixes *DB_* et *MAIL_* (qui permettent respectivement de se connecter à la base de données et de se connecter à un système de mailing).
+Les variables d'environnement qu'il faut absolument fournir sont *APP_NAME*, *APP_ENV*, *APP_KEY*, *APP_DEBUG*, *APP_URL*, *DB_CONNECTION*, *DB_HOST*, *DB_PORT*, *DB_DATABASE*, *DB_USERNAME*, *DB_PASSWORD*, *MAIL_MAILER*, *MAIL_HOST*, *MAIL_PORT*, *MAIL_USERNAME*, *MAIL_PASSWORD*, *MAIL_ENCRYPTION*, *MAIL_FROM_ADDRESS*, *MAIL_FROM_NAME*
 
 ## Installation des dépendances
 
 Exécutez les commandes `composer install` et `npm install`.
-
-## Créer un lien symbolique entre */public/storage* et */storage/app/public*
-
-Exécutez la commande `php artisan storage:link`.
 
 ## Créer les tables de la base de données
 
