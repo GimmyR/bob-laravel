@@ -1,18 +1,18 @@
 # Bread on Board
 
-Bread on Board (littéralement "pain sur la planche") est une application web développée sous *Laravel* avec *Inertia*, *React* et *Postgres*, qui permet de créer des recettes de cuisine et de les consulter en mode To-Do List.
+Bread on Board is a web application developed in Laravel with Inertia, React and Postgres, which lets you create recipes and consult them in To-Do List mode.
 
-## Prérequis
+## Prerequisites
 
-* **PHP** version **8.1.2** (ou plus)
-* **Composer** version **2.5.8** (ou plus)
-* **Node** version **18.18.0** (ou plus)
-* **NPM** version **9.7.1** (ou plus)
-* **Postgres** version **14.9** (ou plus)
+* **PHP** version **8.1.2**
+* **Composer** version **2.5.8**
+* **Node** version **18.18.0**
+* **NPM** version **9.7.1**
+* **Postgres** version **14.9**
 
-## Variables d'environnement
+## Environment variables
 
-Les variables d'environnement qu'il faut absolument fournir sont :
+The environment variables that must be supplied are :
 
 * *APP_NAME*
 * *APP_ENV*
@@ -34,19 +34,19 @@ Les variables d'environnement qu'il faut absolument fournir sont :
 * *MAIL_FROM_ADDRESS*
 * *MAIL_FROM_NAME*
 
-## Installation des dépendances
+## Dependency installation
 
-Exécutez les commandes `composer install` et `npm install`.
+Run commands `composer install` and `npm install`.
 
-## Créer les tables de la base de données
+## Create the tables of the database
 
-Exécutez la commande `php artisan migrate`.
+Run the command `php artisan migrate`.
 
-## Lancement du serveur
+## Server launch
 
-Exécutez la commande `php artisan serve`.
-Si vous êtes en mode développement, exécutez la commande `npm run dev` sur un autre terminal.
+Run the command `php artisan serve`.
+If you are in developement mode, run the command `npm run dev` on another terminal.
 
-## Build la partie Front-End pour la production
+## Build Front-End part for production
 
-Exécutez la commande `npm run build`.
+Run the command `npm run build`.
