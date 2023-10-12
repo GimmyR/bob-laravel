@@ -32,7 +32,8 @@ function Login() {
             }).catch(error => console.log(error)));
     };
 
-    const connect = function() {
+    const connect = function(e) {
+        e.preventDefault();
         setError(null);
         post("/user/login", {
             onSuccess: () => getUser()
@@ -47,13 +48,13 @@ function Login() {
         <Container>
             <Row className="d-flex flex-row justify-content-center">
                 <Col lg={6} className="border rounded-1 mt-3 pt-5 pb-4 px-4">
-                    <Form>
+                    <Form onSubmit={connect}>
                         {error != null && <Alert variant="danger" className="py-1">{error}</Alert>}
                         {success != null && <Alert variant="success" className="py-1">{success}</Alert>}
                         <EmailInput value={data.email} setValue={setData}/>
                         <PasswordInput value={data.password} setValue={setData}/>
                         <ForgotPasswordLink/>
-                        <LoginButton onClick={connect}/>
+                        <LoginButton/>
                         <CreateAccountLink createAccount={createAccount}/>
                     </Form>
                 </Col>

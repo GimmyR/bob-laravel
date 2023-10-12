@@ -21,7 +21,8 @@ function CreateAccount() {
 
     const [error, setError] = useState(null);
 
-    const createAccount = function() {
+    const createAccount = function(e) {
+        e.preventDefault();
         setError(null);
 
         if(data.password == confirmPassword)
@@ -48,13 +49,13 @@ function CreateAccount() {
         <Container>
             <Row className="d-flex flex-row justify-content-center">
                 <Col lg={6} className="border rounded-1 mt-3 pt-5 pb-4 px-4">
-                    <Form>
+                    <Form onSubmit={createAccount}>
                         {error != null && <Alert variant="danger" className="py-1">{error}</Alert>}
                         <UsernameInput value={data.name} setValue={setData}/>
                         <EmailInput value={data.email} setValue={setData}/>
                         <PasswordInput value={data.password} setValue={setData}/>
                         <ConfirmPasswordInput value={confirmPassword} setValue={setConfirmPassword}/>
-                        <SaveAccountButton onClick={createAccount}/>
+                        <SaveAccountButton/>
                         <LoginLink onClick={login}/>
                     </Form>
                 </Col>

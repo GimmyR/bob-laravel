@@ -7,10 +7,5 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.jsx'],
             refresh: true,
         }),
-    ],
-    server: {
-        host: true,
-        strictPort: true,
-        port: 8000,
-    },
+    ]
 });
